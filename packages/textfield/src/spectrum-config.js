@@ -18,10 +18,10 @@ const config = {
             host: {
                 selector: '.spectrum-Textfield',
             },
-            ids: [
+            slots: [
                 {
                     selector: '.spectrum-Textfield-input',
-                    name: 'input',
+                    name: '',
                 },
             ],
             classes: [

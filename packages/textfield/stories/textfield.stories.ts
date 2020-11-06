@@ -21,51 +21,61 @@ export default {
 
 export const Default = (): TemplateResult => {
     return html`
-        <sp-textfield placeholder="Enter your name"></sp-textfield>
-        <sp-textfield placeholder="Enter your name" disabled></sp-textfield>
+        <sp-textfield placeholder="Enter your name">
+            <input />
+        </sp-textfield>
+        <sp-textfield placeholder="Enter your name" disabled>
+            <input />
+        </sp-textfield>
         <sp-textfield
             placeholder="Enter your name"
             pattern="[\\w\\s]*"
             required
             value="A valid input"
-        ></sp-textfield>
+        >
+            <input />
+        </sp-textfield>
         <sp-textfield
             placeholder="Enter your name"
             pattern="[\\w\\s]*"
             required
             value="A valid input"
             disabled
-        ></sp-textfield>
+        >
+            <input />
+        </sp-textfield>
         <sp-textfield
             placeholder="Enter your name"
             pattern="[\\d]*"
             value="Not a valid input"
-        ></sp-textfield>
+        >
+            <input />
+        </sp-textfield>
         <sp-textfield
             placeholder="Enter your name"
             pattern="^[\\d]$"
             required
             value="Not a valid input"
             disabled
-        ></sp-textfield>
+        >
+            <input />
+        </sp-textfield>
     `;
 };
 
 export const notRequiredWithPattern = (): TemplateResult => {
     return html`
-        <sp-textfield
-            placeholder="Enter z, x, c, or v"
-            pattern="[zxcv]+"
-        ></sp-textfield>
+        <sp-textfield placeholder="Enter z, x, c, or v" pattern="[zxcv]+">
+            <input />
+        </sp-textfield>
     `;
 };
 
 export const allowedKeys = (): TemplateResult => {
     return html`
-        <sp-textfield
-            placeholder="Enter your name"
-            allowed-keys="a-z"
-        ></sp-textfield>
+        <sp-textfield placeholder="Enter your name" allowed-keys="a-z">
+            <input />
+        </sp-textfield>
     `;
 };
 
@@ -75,5 +85,7 @@ export const readonly = (): TemplateResult => html`
         value="A readonly textfield"
         readonly
         placeholder="Enter your life story"
-    ></sp-textfield>
+    >
+        <input />
+    </sp-textfield>
 `;

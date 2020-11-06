@@ -28,7 +28,7 @@ import { Textfield } from '@spectrum-web-components/textfield';
 
 ```html
 <sp-field-label for="name-0">Name</sp-field-label>
-<sp-textfield id="name-0" placeholder="Enter your name"></sp-textfield>
+<sp-textfield id="name-0" placeholder="Enter your name"><input /></sp-textfield>
 ```
 
 ## Variants
@@ -44,7 +44,7 @@ Dictate the validity state of the text entry with the `valid` attribute.
     placeholder="Enter your name"
     valid
     value="My Name"
-></sp-textfield>
+><input /></sp-textfield>
 ```
 
 ### Invalid
@@ -53,7 +53,7 @@ Dictate the invalidity state of the text entry with the `invalid` attribute.
 
 ```html
 <sp-field-label for="name-2" required>Name</sp-field-label>
-<sp-textfield id="name-2" invalid placeholder="Enter your name"></sp-textfield>
+<sp-textfield id="name-2" invalid placeholder="Enter your name"><input /></sp-textfield>
 ```
 
 ### Quiet
@@ -62,5 +62,5 @@ The quiet style works best when a clear layout (vertical stack, table, grid) ass
 
 ```html
 <sp-field-label for="name-3">Name (quietly)</sp-field-label>
-<sp-textfield id="name-3" placeholder="Enter your name" quiet></sp-textfield>
+<sp-textfield id="name-3" placeholder="Enter your name" quiet><input /></sp-textfield>
 ```

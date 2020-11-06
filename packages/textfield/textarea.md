@@ -31,8 +31,10 @@ import { Textfield } from '@spectrum-web-components/textfield';
 <sp-textfield
     id="story-0"
     multiline
-    placeholder="Enter your life story"
-></sp-textfield>
+    placeholder="Enter your name"
+>
+    <textarea></textarea>
+</sp-textfield>
 ```
 
 ## Variants
@@ -48,7 +50,9 @@ Dictate the validity state of the text entry with the `valid` attribute.
     multiline
     placeholder="Enter your name"
     valid
-></sp-textfield>
+>
+    <textarea></textarea>
+</sp-textfield>
 ```
 
 ### Invalid
@@ -62,7 +66,9 @@ Dictate the invalidity state of the text entry with the `invalid` attribute.
     invalid
     multiline
     placeholder="Enter your name"
-></sp-textfield>
+>
+    <textarea></textarea>
+</sp-textfield>
 ```
 
 ### Quiet
@@ -76,7 +82,9 @@ The quiet style works best when a clear layout (vertical stack, table, grid) ass
     multiline
     placeholder="Enter your name"
     quiet
-></sp-textfield>
+>
+    <textarea></textarea>
+</sp-textfield>
 ```
 
 ### Grows
@@ -94,7 +102,9 @@ Note: When leveraging the `quiet` attribute, the `grows` attribute does not effe
             multiline
             placeholder="Enter your name"
             value="By default the text area has a fixed height and will scroll when text entry goes beyond the available space. With the use of the `grows` attribute the text area will grow to accomidate the full content of the element."
-        ></sp-textfield>
+        >
+            <textarea></textarea>
+        </sp-textfield>
     </div>
     <div>
         <sp-field-label for="story-5">Background</sp-field-label>
@@ -104,7 +114,9 @@ Note: When leveraging the `quiet` attribute, the `grows` attribute does not effe
             multiline
             placeholder="Enter your name"
             value="By default the text area has a fixed height and will scroll when text entry goes beyond the available space. With the use of the `grows` attribute the text area will grow to accomidate the full content of the element."
-        ></sp-textfield>
+        >
+            <textarea></textarea>
+        </sp-textfield>
     </div>
     <div>
         <sp-field-label for="story-6">Background (quietly)</sp-field-label>
@@ -115,7 +127,9 @@ Note: When leveraging the `quiet` attribute, the `grows` attribute does not effe
             placeholder="Enter your name"
             value="By default the text area has a fixed height and will scroll when text entry goes beyond the available space. With the use of the `grows` attribute the text area will grow to accomidate the full content of the element."
             quiet
-        ></sp-textfield>
+        >
+            <textarea></textarea>
+        </sp-textfield>
     </div>
 </div>
 ```

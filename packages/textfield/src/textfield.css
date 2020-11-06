@@ -12,7 +12,11 @@ governing permissions and limitations under the License.
 
 @import './spectrum-textfield.css';
 
-:host([grows]) #input {
+:host([disabled]) {
+    pointer-events: none;
+}
+
+:host([grows]) ::slotted(*) {
     position: absolute;
     top: 0;
     left: 0;

@@ -81,11 +81,7 @@ export class Search extends Textfield {
         // so this synthetic replication of a `change` event must not be
         // either as the `Textfield` baseclass should only need to handle
         // the native variant of this interaction.
-        this.focusElement.dispatchEvent(
-            new InputEvent('change', {
-                bubbles: true,
-            })
-        );
+        this.focusElement.dispatchEvent(new InputEvent('change'));
     }
 
     protected render(): TemplateResult {
@@ -117,8 +113,15 @@ export class Search extends Textfield {
         `;
     }
 
-    public updated(changedProperties: PropertyValues): void {
-        super.updated(changedProperties);
-        this.multiline = false;
+    protected firstUpdated(changes: PropertyValues): void {
+        this.append(document.createElement('input'));
+        super.firstUpdated(changes);
+    }
+
+    public updated(changes: PropertyValues): void {
+        super.updated(changes);
+        if (changes.has('multiline')) {
+            this.multiline = false;
+        }
     }
 }

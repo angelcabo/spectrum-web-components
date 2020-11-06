@@ -107,10 +107,10 @@ describe('Search', () => {
         await elementUpdated(el);
 
         expect(el.value).to.equal('');
-        expect(inputSpy.calledOnce, 'one input').to.be.true;
         expect(inputSpy.calledWith(''), 'was blank').to.be.true;
-        expect(changeSpy.calledOnce, 'one change').to.be.true;
+        expect(inputSpy.callCount).to.equal(1);
         expect(changeSpy.calledWith(''), 'was blank').to.be.true;
+        expect(changeSpy.callCount).to.equal(1);
     });
     it('can be cleared via "Escape"', async () => {
         const inputSpy = spy();
@@ -149,10 +149,10 @@ describe('Search', () => {
         await elementUpdated(el);
 
         expect(el.value).to.equal('');
-        expect(inputSpy.calledOnce, 'one input').to.be.true;
         expect(inputSpy.calledWith(''), 'was blank').to.be.true;
-        expect(changeSpy.calledOnce, 'one change').to.be.true;
+        expect(inputSpy.callCount).to.equal(1);
         expect(changeSpy.calledWith(''), 'was blank').to.be.true;
+        expect(changeSpy.callCount).to.equal(1);
     });
     it('cannot be multiline', async () => {
         const el = await litFixture<Search>(

@@ -233,11 +233,16 @@ class SpectrumProcessor {
                     );
                 } else {
                     const { parent } = node;
+                    const index = parent.nodes.indexOf(node);
                     replaceNode(node, slot.shadowSlottedNode);
                     if (!isLastNode) {
-                        const newNode = parent.nodes[parent.nodes.length - 2];
+                        const newNode = parent.nodes[index];
                         const next = newNode.next();
-                        if (next.value.match(/child/)) {
+                        if (
+                            next.value.match(/child/) ||
+                            next.value.match(/hover/) ||
+                            next.value.match(/disabled/)
+                        ) {
                             next.remove();
                             newNode.nodes[0].insertAfter(
                                 newNode.nodes[0].nodes[0],

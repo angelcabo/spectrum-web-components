@@ -15,5 +15,5 @@ import { html } from '@spectrum-web-components/base';
 import { measureFixtureCreation } from '../../../../test/benchmark/helpers.js';
 
 measureFixtureCreation(html`
-    <sp-textfield placeholder="Enter your name"></sp-textfield>
+    <sp-textfield placeholder="Enter your name"><input /></sp-textfield>
 `);
