@@ -316,14 +316,11 @@ export class ColorWheel extends Focusable {
                 color=${this._color.toHslString()}
                 ?disabled=${this.disabled}
                 style=${handleLocationStyles}
-                @manage=${streamingListener(
-                    { type: 'pointerdown', fn: this.handlePointerdown },
-                    { type: 'pointermove', fn: this.handlePointermove },
-                    {
-                        type: ['pointerup', 'pointercancel'],
-                        fn: this.handlePointerup,
-                    }
-                )}
+                ${streamingListener({
+                    start: ["pointerdown", this.handlePointerdown],
+                    streamInside: ["pointermove", this.handlePointermove ],
+                    end: [['pointerup', 'pointercancel'], this.handlePointerup]
+                })}
             ></sp-color-handle>
 
             <input
