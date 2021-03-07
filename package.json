@@ -66,7 +66,7 @@
         "lerna-publish": "lerna publish --message 'chore: release new versions'",
         "test": "yarn test:focus unit",
         "test:focus": "yarn build && yarn test:ci --coverage --group",
-        "test:build": "tsc --build test/tsconfig-plugins.json && tsc --build test/tsconfig-test.json",
+        "test:build": "node test/visual/create.js && tsc --build test/tsconfig-plugins.json && tsc --build test/tsconfig-test.json",
         "test:ci": "yarn test:build && yarn test:start",
         "test:start": "web-test-runner",
         "test:watch": "run-p watch 'test:build -w' 'test:start --watch --group unit'",
