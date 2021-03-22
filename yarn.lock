@@ -3137,6 +3137,11 @@
   resolved "https://registry.yarnpkg.com/@spectrum-css/dialog/-/dialog-3.0.1.tgz#33aae036282159f6aa998848b8c0828640a9620a"
   integrity sha512-hUFbRR6RGT63MNuP7wP+k9KU+uRuICsduMihskh700e+jiQ+Gsv53fBFDlB843FoZYlIXzFQXgtjMUC5a4Qibw==
 
+"@spectrum-css/dietvars@1.0.0-beta.7":
+  version "1.0.0-beta.7"
+  resolved "https://registry.yarnpkg.com/@spectrum-css/dietvars/-/dietvars-1.0.0-beta.7.tgz#c9587f44f356de7e42b637cf8dbf6acc61cf0cb7"
+  integrity sha512-AiTGSvUY3RaWkhbv0fULAflnB4FZuzW0x08EfN4mKVjqHO0DwaanD5Wd2dWi6rDXsAidL7Du8unuRcBOF87Y2g==
+
 "@spectrum-css/divider@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@spectrum-css/divider/-/divider-1.0.1.tgz#9d2b8d0b6bc05f08249608297e0e179f6510458c"
@@ -3298,15 +3303,6 @@
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/@spectrum-css/vars/-/vars-3.0.1.tgz#561fd69098f896a647242dd8d6108af603bfa31e"
   integrity sha512-l4oRcCOqInChYXZN6OQhpe3isk6l4OE6Ys8cgdlsiKp53suNoQxyyd9p/eGRbCjZgH3xQ8nK0t4DHa7QYC0S6w==
-
-"@spectrum-web-components/shared@^0.11.1":
-  version "0.11.1"
-  resolved "https://registry.yarnpkg.com/@spectrum-web-components/shared/-/shared-0.11.1.tgz#5105e966bd25a4c8bcf43336c8212b6d819a8c32"
-  integrity sha512-vXll2JdA8GItTxaaXX7XZPfPZcqrRqe2ILuyTAzcSlZIroPcsDZnJtJEjviiEnUG8TAXVsim9Rq9+sSJ3kw9SA==
-  dependencies:
-    "@spectrum-web-components/base" "^0.4.1"
-    focus-visible "^5.1.0"
-    tslib "^2.0.0"
 
 "@stylelint/postcss-css-in-js@^0.37.2":
   version "0.37.2"

@@ -9,19 +9,8 @@ the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTA
 OF ANY KIND, either express or implied. See the License for the specific language
 governing permissions and limitations under the License.
 */
-import html from '@web/rollup-plugin-html';
-import { nodeResolve } from '@rollup/plugin-node-resolve';
-import { copy } from '@web/rollup-plugin-copy';
-import visualizer from 'rollup-plugin-visualizer';
 
-export default {
-    input: 'test/visual/src/index.html',
-    preserveEntrySignatures: false,
-    output: { dir: 'test/visual/review' },
-    plugins: [
-        nodeResolve(),
-        html(),
-        copy({ patterns: '**/*.json', rootDir: 'test/visual/src' }),
-        visualizer(),
-    ],
-};
+import mediumStyles from '../src/diet/scale-medium.css.js';
+import { Theme } from '../src/Theme.js';
+
+Theme.registerThemeFragment('medium', 'scale', mediumStyles);

@@ -20,7 +20,7 @@ import {
     nothing,
 } from '@spectrum-web-components/base';
 import '@spectrum-web-components/theme/sp-theme.js';
-import '@spectrum-web-components/theme/src/themes.js';
+import '@spectrum-web-components/theme/src/diet/themes.js';
 import '@spectrum-web-components/field-label/sp-field-label.js';
 import '@spectrum-web-components/picker/sp-picker.js';
 import '@spectrum-web-components/menu/sp-menu.js';

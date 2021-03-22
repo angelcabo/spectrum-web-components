@@ -15,8 +15,10 @@ governing permissions and limitations under the License.
 import path from 'path';
 import fs from 'fs-extra';
 import postcss from 'postcss';
+import globby from 'globby';
 import { postCSSPlugins } from './css-processing.cjs';
 import { fileURLToPath } from 'url';
+import postcssCustomProperties from 'postcss-custom-properties';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -25,7 +27,7 @@ const license = fs.readFileSync(
     path.join(__dirname, '..', 'config', 'license.js')
 );
 
-const processCSSData = async (data, identifier) => {
+const processCSSData = async (data, identifier, from) => {
     /* lit-html is a JS litteral, so `\` escapes by default.
      * for there to be unicode characters, the escape must
      * escape itself...
@@ -60,10 +62,11 @@ const processCSSData = async (data, identifier) => {
 
     result = await postcss(postCSSPlugins())
         .process(result, {
-            from: undefined,
+            from,
         })
         .then((output) => output.css);
 
+    result = result.replace(selector2, shadowSelector);
     return result;
 };
 
@@ -72,13 +75,13 @@ const writeProcessedCSSToFile = (dstPath, contents) => {
     fs.writeFile(dstPath, result, 'utf8');
 };
 
-const processCSS = async (srcPath, dstPath, identifier) => {
+const processCSS = async (srcPath, dstPath, identifier, from) => {
     fs.readFile(srcPath, 'utf8', async function (error, data) {
         if (error) {
             return console.log(error);
         }
 
-        let result = await processCSSData(data, identifier);
+        let result = await processCSSData(data, identifier, from);
         writeProcessedCSSToFile(dstPath, result);
     });
 };
@@ -97,9 +100,28 @@ const processMultiSourceCSS = async (srcPaths, dstPath, identifier) => {
 
 // where is spectrum-css?
 // TODO: use resolve package to find node_modules
-const spectrumPath = path.resolve(
-    path.join(__dirname, '..', 'node_modules', '@spectrum-css', 'vars', 'dist')
-);
+const spectrumPaths = [
+    path.resolve(
+        path.join(
+            __dirname,
+            '..',
+            'node_modules',
+            '@spectrum-css',
+            'vars',
+            'dist'
+        )
+    ),
+    path.resolve(
+        path.join(
+            __dirname,
+            '..',
+            'node_modules',
+            '@spectrum-css',
+            'dietvars',
+            'dist'
+        )
+    ),
+];
 
 // sources to use from spectrum-css
 const themes = [
@@ -113,32 +135,118 @@ const scales = ['medium', 'large'];
 const cores = ['global'];
 const processes = [];
 
-themes.forEach(async (theme) => {
-    const srcPath = path.join(spectrumPath, `spectrum-${theme}.css`);
-    const dstPath = path.resolve(
-        path.join(__dirname, '..', 'packages', 'styles', `theme-${theme}.css`)
-    );
+spectrumPaths.forEach(async (spectrumPath, i) => {
+    const packageDir = ['styles'];
+    if (i === 1) {
+        packageDir.push('diet');
+        // for await (const srcPath of globby.stream(
+        //     `${spectrumPath}/components/*`
+        // )) {
+        //     const pathParts = srcPath.split('/');
+        //     const fileName = pathParts[pathParts.length - 1];
+        //     if (fileName !== 'index.css') {
+        //         const dstPath = path.resolve(
+        //             path.join(
+        //                 __dirname,
+        //                 '..',
+        //                 'packages',
+        //                 ...packageDir,
+        //                 'components',
+        //                 fileName
+        //             )
+        //         );
 
-    console.log(`processing theme ${srcPath}`);
-    processes.push(await processCSS(srcPath, dstPath, theme));
-});
+        //         const componentName = fileName
+        //             .replace('.css', '')
+        //             .split('-')[1];
+        //         const usedCSSPath = `node_modules/@spectrum-css/${componentName}/dist/vars.css`;
+        //         const usedCSS = fs.readFileSync(usedCSSPath, 'utf8');
+        //         const used = { customProperties: {} };
+        //         await postcss([
+        //             postcssCustomProperties({
+        //                 importFrom: [usedCSSPath],
+        //                 exportTo: [
+        //                     used,
+        //                     (customProperties) => {
+        //                         console.log(customProperties);
+        //                     },
+        //                 ],
+        //             }),
+        //         ]).process(usedCSS, {
+        //             from: usedCSSPath,
+        //         });
+        //         console.log(used);
 
-scales.forEach(async (scale) => {
-    const srcPath = path.join(spectrumPath, `spectrum-${scale}.css`);
-    const dstPath = path.resolve(
-        path.join(__dirname, '..', 'packages', 'styles', `scale-${scale}.css`)
-    );
-    console.log(`processing scale  ${srcPath}`);
-    processes.push(await processCSS(srcPath, dstPath, scale));
-});
+        //         console.log(`processing ${fileName} custom properties`);
+        //         processes.push(await processCSS(srcPath, dstPath, ':root'));
+        //     }
+        // }
+        const dstPath = path.resolve(
+            path.join(
+                __dirname,
+                '..',
+                'packages',
+                ...packageDir,
+                'components',
+                'index.css'
+            )
+        );
 
-cores.forEach(async (core) => {
-    const srcPath = path.join(spectrumPath, `spectrum-${core}.css`);
-    const dstPath = path.resolve(
-        path.join(__dirname, '..', 'packages', 'styles', `core-${core}.css`)
-    );
-    console.log(`processing core ${srcPath}`);
-    processes.push(await processCSS(srcPath, dstPath, core));
+        console.log(`processing index.css custom properties`);
+        processes.push(
+            await processCSS(
+                `${spectrumPath}/components/index.css`,
+                dstPath,
+                'components',
+                dstPath
+            )
+        );
+    }
+    themes.forEach(async (theme) => {
+        const srcPath = path.join(spectrumPath, `spectrum-${theme}.css`);
+        const dstPath = path.resolve(
+            path.join(
+                __dirname,
+                '..',
+                'packages',
+                ...packageDir,
+                `theme-${theme}.css`
+            )
+        );
+
+        console.log(`processing theme ${srcPath}`);
+        processes.push(await processCSS(srcPath, dstPath, theme));
+    });
+
+    scales.forEach(async (scale) => {
+        const srcPath = path.join(spectrumPath, `spectrum-${scale}.css`);
+        const dstPath = path.resolve(
+            path.join(
+                __dirname,
+                '..',
+                'packages',
+                ...packageDir,
+                `scale-${scale}.css`
+            )
+        );
+        console.log(`processing scale  ${srcPath}`);
+        processes.push(await processCSS(srcPath, dstPath, scale));
+    });
+
+    cores.forEach(async (core) => {
+        const srcPath = path.join(spectrumPath, `spectrum-${core}.css`);
+        const dstPath = path.resolve(
+            path.join(
+                __dirname,
+                '..',
+                'packages',
+                ...packageDir,
+                `core-${core}.css`
+            )
+        );
+        console.log(`processing core ${srcPath}`);
+        processes.push(await processCSS(srcPath, dstPath, core));
+    });
 });
 
 (async () => {

@@ -231,7 +231,7 @@ export class Theme extends HTMLElement implements ThemeKindProvider {
                 !(dirParent instanceof Theme)
             ) {
                 dirParent = ((dirParent as HTMLElement).assignedSlot || // step into the shadow DOM of the parent of a slotted node
-                dirParent.parentNode || // DOM Element detected
+                    dirParent.parentNode || // DOM Element detected
                     (dirParent as ShadowRoot).host) as
                     | HTMLElement
                     | DocumentFragment

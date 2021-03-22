@@ -21,7 +21,7 @@ import {
 import './side-nav.js';
 import layoutStyles from './layout.css';
 import '@spectrum-web-components/theme/sp-theme.js';
-import '@spectrum-web-components/theme/src/themes.js';
+import '@spectrum-web-components/theme/src/diet/themes.js';
 import { Color, Scale } from '@spectrum-web-components/theme';
 import '@spectrum-web-components/field-label/sp-field-label.js';
 import { Picker } from '@spectrum-web-components/picker';
