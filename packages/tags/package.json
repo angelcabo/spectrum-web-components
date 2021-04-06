@@ -27,13 +27,13 @@
     "exports": {
         ".": "./src/index.js",
         "./src/*": "./src/*",
-        "./custom-elements.json": "./custom-elements.json",
         "./package.json": "./package.json",
         "./sp-tags": "./sp-tags.js",
         "./sp-tags.js": "./sp-tags.js",
         "./sp-tag": "./sp-tag.js",
         "./sp-tag.js": "./sp-tag.js"
     },
+    "customElementsManifest": "custom-elements.json",
     "files": [
         "custom-elements.json",
         "*.d.ts",

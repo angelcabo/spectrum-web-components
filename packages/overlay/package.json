@@ -27,7 +27,6 @@
     "exports": {
         ".": "./src/index.js",
         "./src/*": "./src/*",
-        "./custom-elements.json": "./custom-elements.json",
         "./package.json": "./package.json",
         "./active-overlay": "./active-overlay.js",
         "./active-overlay.js": "./active-overlay.js",
@@ -36,6 +35,7 @@
         "./sync/overlay-trigger": "./sync/overlay-trigger.js",
         "./sync/overlay-trigger.js": "./sync/overlay-trigger.js"
     },
+    "customElementsManifest": "custom-elements.json",
     "files": [
         "custom-elements.json",
         "*.d.ts",

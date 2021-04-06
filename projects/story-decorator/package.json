@@ -26,13 +26,13 @@
     "type": "module",
     "exports": {
         "./src/*": "./src/*.js",
-        "./custom-elements.json": "./custom-elements.json",
         "./package.json": "./package.json",
         "./decorator": "./decorator.js",
         "./decorator.js": "./decorator.js",
         "./sp-story-decorator": "./sp-story-decorator.js",
         "./sp-story-decorator.js": "./sp-story-decorator.js"
     },
+    "customElementsManifest": "custom-elements.json",
     "files": [
         "custom-elements.json",
         "*.ts",

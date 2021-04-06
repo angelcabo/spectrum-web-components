@@ -27,13 +27,13 @@
     "exports": {
         ".": "./src/index.js",
         "./src/*": "./src/*",
-        "./custom-elements.json": "./custom-elements.json",
         "./package.json": "./package.json",
         "./sp-button": "./sp-button.js",
         "./sp-button.js": "./sp-button.js",
         "./sp-clear-button": "./sp-clear-button.js",
         "./sp-clear-button.js": "./sp-clear-button.js"
     },
+    "customElementsManifest": "custom-elements.json",
     "files": [
         "custom-elements.json",
         "*.d.ts",

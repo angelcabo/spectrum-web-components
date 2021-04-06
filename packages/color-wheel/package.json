@@ -24,12 +24,13 @@
     "module": "src/index.js",
     "type": "module",
     "exports": {
-        "./src/": "./src/index.js",
-        "./custom-elements.json": "./custom-elements.json",
+        ".": "./src/index.js",
+        "./src/*": "./src/*",
         "./package.json": "./package.json",
         "./sp-color-wheel": "./sp-color-wheel.js",
         "./sp-color-wheel.js": "./sp-color-wheel.js"
     },
+    "customElementsManifest": "custom-elements.json",
     "files": [
         "custom-elements.json",
         "*.d.ts",
